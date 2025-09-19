@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee CRUD</title>
+</head>
+<body>
+    <h2>Employee Form</h2>
+    <form id="employeeForm">
+        <label for="empId">Employee ID:</label>
+        <input type="text" id="empId" name="empId" required><br><br>
+
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
+
+<label for="phnumber">Phone Number:</label>
+<input type="tel" id="phnumber" name="phnumber" required pattern="[0-9]+" inputmode="numeric"><br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="workingType">Working Type:</label>
+        <select id="workingType" name="workingType">
+            <option value="remote">Remote</option>
+            <option value="office">In Office</option>
+        </select><br><br>
+
+        <button type="submit">Save</button>
+        <button type="reset">Clear</button>
+    </form>
+
+    <h2>Employee Records</h2>
+    <table border="1" id="employeeTable">
+        <thead>
+            <tr>
+                <th>Employee ID</th>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Working Type</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Data will go here -->
+        </tbody>
+    </table>
+</body>
+</html>

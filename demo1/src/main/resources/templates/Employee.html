@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee CRUD</title>
+</head>
+<body>
+    <h2>Employee Form</h2>
+    <form th:action="@{/add}" method="post" th:object="${employee}">
+        <label>Employee ID:</label>
+        <input type="text" th:field="*{empId}" required><br><br>
+
+        <label>Name:</label>
+        <input type="text" th:field="*{name}" required><br><br>
+
+        <label>Phone Number:</label>
+        <input type="number" th:field="*{phnumber}" required><br><br>
+
+        <label>Email:</label>
+        <input type="email" th:field="*{email}" required><br><br>
+
+        <label>Working Type:</label>
+        <select th:field="*{workingType}">
+            <option value="remote">Remote</option>
+            <option value="office">In Office</option>
+        </select><br><br>
+
+        <button type="submit">Add Employee</button>
+    </form>
+
+    <h2>Employee Records</h2>
+    <table border="1">
+        <tr>
+            <th>Emp ID</th>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Working Type</th>
+            <th>Actions</th>
+        </tr>
+        <tr th:each="emp : ${employees}">
+            <td th:text="${emp.empId}"></td>
+            <td th:text="${emp.name}"></td>
+            <td th:text="${emp.phnumber}"></td>
+            <td th:text="${emp.email}"></td>
+            <td th:text="${emp.workingType}"></td>
+            <td>
+                <form th:action="@{/update}" method="post">
+                    <input type="hidden" th:value="${emp.empId}" name="empId"/>
+                    <input type="text" th:value="${emp.name}" name="name"/>
+                    <input type="number" th:value="${emp.phnumber}" name="phnumber"/>
+                    <input type="email" th:value="${emp.email}" name="email"/>
+                    <select name="workingType">
+                        <option th:selected="${emp.workingType == 'remote'}" value="remote">Remote</option>
+                        <option th:selected="${emp.workingType == 'office'}" value="office">Office</option>
+                    </select>
+                    <button type="submit">Update</button>
+                </form>
+                <a th:href="@{'/delete/' + ${emp.empId}}">Delete</a>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
